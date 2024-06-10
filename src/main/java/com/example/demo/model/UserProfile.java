@@ -2,6 +2,8 @@ package com.example.demo.model;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public class UserProfile {
@@ -22,6 +24,17 @@ public class UserProfile {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    private Set<Permission> permissions;
+
+    public Set<Permission> getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(Set<Permission> permissions) {
+        this.permissions = permissions;
     }
 
 }

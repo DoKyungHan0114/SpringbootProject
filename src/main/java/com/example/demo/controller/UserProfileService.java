@@ -1,13 +1,10 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.AgentProfile;
-import com.example.demo.model.ContractorProfile;
-import com.example.demo.model.TravelProfile;
+import com.example.demo.model.*;
 import com.example.demo.AgentProfileRepository;
 import com.example.demo.ContractorProfileRepository;
 import com.example.demo.TravelProfileRepository;
 import com.example.demo.UserProfileRepository;
-import com.example.demo.model.UserProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -70,5 +67,15 @@ public class UserProfileService{
         return travelProfileRepository.save(travelProfile);
     }
 
-    // Add similar methods for updating and retrieving specific profile types...
+
+    public UserProfile grantPermission(Long id, Permission permission) {
+        UserProfile userProfile = userProfileRepository.findById(id).orElse(null);
+        if (userProfile != null) {
+            userProfile.getPermissions().add(permission);
+            userProfileRepository.save(userProfile);
+        }
+        return userProfile;
+    }
+
+
 }

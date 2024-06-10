@@ -1,10 +1,7 @@
 package com.example.demo.controller;
 
 
-import com.example.demo.model.AgentProfile;
-import com.example.demo.model.ContractorProfile;
-import com.example.demo.model.TravelProfile;
-import com.example.demo.model.UserProfile;
+import com.example.demo.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -76,6 +73,21 @@ public class UserProfileController {
         } catch (Exception e) {
             logger.error("Error creating contractor profile: {}", e.toString());
             return ResponseEntity.badRequest().body(-1L);
+        }
+    }
+
+    @PostMapping("/{id}/permissions")
+    public ResponseEntity<UserProfile> grantPermission(@PathVariable Long id, @RequestBody Permission permission) {
+        try {
+            UserProfile userProfile = userProfileService.grantPermission(id, permission);
+            if (userProfile != null) {
+                return ResponseEntity.ok(userProfile);
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (Exception e) {
+            logger.error("Error granting permission: {}", e.toString());
+            return ResponseEntity.badRequest().body(null);
         }
     }
 

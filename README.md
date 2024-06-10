@@ -8,7 +8,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-- Java 11
+- Java 22
 - Gradle
 - IntelliJ IDEA 2023.2 or any other IDE that supports Spring Boot
 

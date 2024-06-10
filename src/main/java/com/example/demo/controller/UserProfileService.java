@@ -35,9 +35,6 @@ public class UserProfileService{
         return null;
     }
 
-//    public UserProfile getUserProfile(Long id) {
-//        return userProfileRepository.findById(id).orElse(null);
-//    }
 
     public UserProfile getUserProfile(Long id) {
         UserProfile userProfile = userProfileRepository.findById(id).orElse(null);
